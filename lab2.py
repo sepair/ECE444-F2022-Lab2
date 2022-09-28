@@ -24,8 +24,11 @@ def form():
     form = NameForm()
     if form.validate_on_submit():
         old_name = session.get('name')
+        old_name2 = session.get('name2')
         if old_name is not None and old_name != form.name.data:
             flash('Looks like you have changed your name!') 
+        if old_name2 and old_name2 != form.name2.data:
+            flash('Looks like you just changed your email!')
         session['name'] = form.name.data
         session['name2'] = form.name2.data
         form.name.data = form.name2.data = ''
